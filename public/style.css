@@ -270,47 +270,56 @@ p {
     opacity: 0.6;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) { /* Adjusted breakpoint for larger mobile devices */
+/* --- MOBILE RESPONSIVENESS (BREAKPOINTS) --- */
+
+/* For devices up to 768px wide (e.g., larger phones in landscape, small tablets) */
+@media (max-width: 768px) {
     .container {
-        padding: 45px 30px;
-        margin: 30px auto;
+        padding: 40px 25px; /* Reduced padding for smaller screens */
+        margin: 25px auto;
         border-radius: 18px;
-        max-width: 95%; 
+        max-width: 95%; /* Allow container to take more width */
     }
 
     .profile-pic {
-        width: 130px; /* Adjusted for mobile */
-        height: 130px;
-        margin-bottom: 25px;
-        border-width: 5px;
+        width: 120px; /* Smaller profile picture */
+        height: 120px;
+        margin-bottom: 20px;
+        border-width: 4px; /* Thinner border */
     }
 
     h1 {
-        font-size: 2.8em; /* Adjusted for mobile */
-        letter-spacing: -0.03em;
+        font-size: 2.5em; /* Smaller heading size */
+        letter-spacing: -0.02em; /* Slightly less tight */
     }
 
     p {
-        font-size: 1.05em;
+        font-size: 1em; /* Smaller body text */
+        line-height: 1.6;
     }
 
     .links {
-        margin-top: 45px;
-        margin-bottom: 45px;
+        margin-top: 40px;
+        margin-bottom: 40px;
     }
 
     .links a {
-        padding: 15px 25px;
-        width: 90%;
-        max-width: none;
-        font-size: 1.05em;
-        margin: 20px auto;
-        gap: 12px;
+        padding: 14px 20px; /* Reduced button padding */
+        width: 90%; /* Wider buttons on mobile */
+        max-width: none; /* No max-width constraint */
+        font-size: 1em; /* Smaller button text */
+        margin: 18px auto; /* Reduced margin between links */
+        gap: 10px; /* Reduced gap between icon and text */
+        box-shadow: 0 6px 15px var(--shadow-base-color); /* Softer shadow */
     }
 
     .links a i {
-        font-size: 1.3em;
+        font-size: 1.2em; /* Smaller icons */
+    }
+
+    .links a:hover {
+        transform: translateY(-6px) scale(1.02); /* Less dramatic lift */
+        box-shadow: 0 10px 20px var(--shadow-base-color), 0 0 20px var(--glow-color); /* Softer glow */
     }
 
     .contact-section {
@@ -319,61 +328,105 @@ p {
     }
 
     .contact-section h2 {
-        font-size: 2em;
+        font-size: 1.8em; /* Smaller contact heading */
         margin-bottom: 30px;
     }
 
     #contactForm {
-        max-width: 90%;
-        gap: 15px;
+        max-width: 90%; /* Wider form */
+        gap: 15px; /* Reduced gap */
     }
 
     #contactForm input,
     #contactForm textarea,
     #contactForm button {
-        padding: 15px 20px;
-        font-size: 0.95em;
+        padding: 14px 18px; /* Reduced input padding */
+        font-size: 0.95em; /* Smaller input font */
+        border-width: 1px; /* Thinner borders */
+    }
+
+    #contactForm button {
+        transform: translateY(0); /* Ensure no initial transform */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    }
+    #contactForm button:hover {
+        transform: translateY(-6px); /* Less dramatic lift */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), 0 0 20px var(--glow-color); /* Softer glow */
     }
 
     .form-message {
-        padding: 15px;
-        font-size: 0.9em;
+        padding: 14px;
+        font-size: 0.85em;
     }
 
     .footer {
         padding: 25px 0;
-        font-size: 0.8em;
+        font-size: 0.75em;
     }
 }
 
-@media (max-width: 480px) { /* Even smaller mobile devices */
+/* For devices up to 480px wide (e.g., most smartphones in portrait) */
+@media (max-width: 480px) {
+    body {
+        padding: 10px; /* Even less padding on very small screens */
+    }
     .container {
-        padding: 35px 18px;
+        padding: 35px 15px; /* Even smaller padding inside container */
         border-radius: 15px;
+        margin: 20px auto;
+        box-shadow: 0 15px 30px var(--shadow-base-color); /* Adjusted shadow depth */
     }
     h1 {
-        font-size: 2.5em;
+        font-size: 2.2em; /* Smallest heading size */
+        letter-spacing: -0.01em;
+    }
+    p {
+        font-size: 0.9em; /* Smallest body text size */
     }
     .profile-pic {
-        width: 110px;
-        height: 110px;
-        border-width: 4px;
+        width: 100px; /* Smallest profile picture */
+        height: 100px;
+        border-width: 3px; /* Thinnest border */
+        margin-bottom: 15px;
+    }
+    .links {
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
     .links a {
-        font-size: 1em;
-        padding: 12px 20px;
-        gap: 10px;
+        padding: 12px 15px; /* Very small button padding */
+        font-size: 0.9em; /* Smallest button text */
+        margin: 15px auto;
+        gap: 8px; /* Smallest gap */
     }
     .links a i {
-        font-size: 1.1em;
+        font-size: 1.1em; /* Smallest icons */
+    }
+    .contact-section {
+        margin-top: 40px;
+        padding-top: 25px;
     }
     .contact-section h2 {
-        font-size: 1.8em;
+        font-size: 1.6em; /* Smallest contact heading */
+        margin-bottom: 25px;
+    }
+    #contactForm {
+        gap: 12px; /* Smallest form gap */
+        max-width: 95%;
     }
     #contactForm input,
     #contactForm textarea,
     #contactForm button {
-        font-size: 0.9em;
-        padding: 12px 15px;
+        padding: 12px 15px; /* Smallest input padding */
+        font-size: 0.85em; /* Smallest input font */
+        border-radius: 8px;
+    }
+    .form-message {
+        padding: 12px;
+        font-size: 0.8em;
+    }
+    .footer {
+        padding: 20px 0;
+        font-size: 0.7em;
     }
 }
