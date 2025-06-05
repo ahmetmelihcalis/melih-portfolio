@@ -1,0 +1,379 @@
+/* General Settings and Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap');
+
+:root {
+    /* Color Palette - Elegant Deep Grey, Black & Rich Maroon */
+    --bg-dark: #1A1A1A;         /* Deep Dark Grey for the furthest background */
+    --card-bg: #000000;         /* Pure Black for the central card background */
+    --text-light: #F0F0F0;      /* Soft white for primary text */
+    --text-muted: #A0A0A0;      /* Muted grey for secondary text and placeholders */
+    --accent-primary: #B22222;  /* Firebrick - The elegant, slightly brighter "bordo" for primary accents/borders */
+    --accent-secondary: #8B0000; /* Dark Red - Deeper bordo for hover states */
+    --shadow-base-color: rgba(0, 0, 0, 0.8); /* Strong, refined black shadow for depth */
+    --glow-color: rgba(178, 34, 34, 0.6); /* Bordo glow for elements, based on accent-primary */
+
+    /* Specific Border/Glow Colors for Elegance */
+    --border-main-card: var(--accent-primary); /* Main card border will be the accent color */
+    --border-accent: var(--accent-primary); /* Accent color for detailed borders (profile pic, links, inputs) */
+    --focus-glow-color: rgba(178, 34, 34, 0.4); /* Softer bordo glow for input focus */
+
+    /* Form Messages (Keeping distinct for clear feedback) */
+    --success-bg: #28a745;      /* Success green */
+    --success-text: #FFFFFF;
+    --error-bg: #F44336;        /* Error red */
+    --error-text: #FFFFFF;
+}
+
+body {
+    font-family: 'Inter', sans-serif; /* Clean, modern body font */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-dark); /* Deep dark grey background */
+    color: var(--text-light); /* White text */
+    text-align: center;
+    overflow-x: hidden; /* Prevents horizontal scroll */
+    padding: 20px; /* Add some padding on smaller screens */
+    box-sizing: border-box; /* Include padding in element's total width/height */
+    /* Subtle radial gradient for background depth */
+    background: radial-gradient(circle at center, #252525 0%, #1A1A1A 100%); /* Slightly lighter grey to dark grey */
+}
+
+.container {
+    background-color: var(--card-bg); /* Pure black card background for the center */
+    padding: 55px 35px; /* Refined padding for elegance */
+    border-radius: 20px; /* Modern rounded corners */
+    box-shadow: 0 20px 50px var(--shadow-base-color); /* Deep, impactful shadow */
+    margin: 40px auto; /* Centered with ample margin */
+    width: 95%;
+    max-width: 580px; /* Refined width for a strong, elegant presence */
+    animation: fadeInScaleUp 1.2s ease-out forwards; /* Smoother, elegant load animation */
+    backdrop-filter: blur(12px); /* Prominent frosted glass effect */
+    -webkit-backdrop-filter: blur(12px); /* For Safari */
+    border: 2px solid var(--border-main-card); /* Accent colored border for the main card */
+    position: relative; 
+    overflow: hidden; /* Ensure shadows and content stay within bounds */
+}
+
+/* Keyframe for initial load animation (elegant and impactful) */
+@keyframes fadeInScaleUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.profile-section {
+    margin-bottom: 40px; /* Ample space below profile */
+}
+
+.profile-pic {
+    width: 150px; /* Refined avatar size for elegance */
+    height: 150px;
+    border-radius: 50%; /* Perfect circle */
+    object-fit: cover; /* Ensures image covers the area */
+    border: 6px solid var(--border-accent); /* Accent color border */
+    box-shadow: 0 0 20px var(--glow-color), /* Initial bordo glow */
+                0 10px 30px var(--shadow-base-color); /* Deep shadow */
+    margin-bottom: 25px; /* Space before heading */
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Smoother, bouncier transition */
+                box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.5s ease-out;
+}
+
+.profile-pic:hover {
+    transform: scale(1.1) rotate(5deg); /* Refined, noticeable effect */
+    border-color: var(--accent-secondary); /* Darker bordo on hover */
+    box-shadow: 0 0 35px rgba(178, 34, 34, 0.8), /* Stronger bordo glow */
+                0 15px 40px var(--shadow-base-color); /* Even deeper shadow */
+}
+
+h1 {
+    font-family: 'Poppins', sans-serif; /* Bold and strong heading font */
+    color: var(--text-light); /* White text */
+    margin-bottom: 12px;
+    font-size: 3.2em; /* Refined, impactful heading */
+    font-weight: 700;
+    letter-spacing: -0.04em; /* Tighter letter spacing for a powerful look */
+    text-shadow: 0 0 15px var(--glow-color), 0 0 25px var(--glow-color); /* Prominent, layered text glow */
+}
+
+p {
+    color: var(--text-muted); /* Muted grey text for description */
+    margin-bottom: 0;
+    font-size: 1.15em; /* Refined body text for readability */
+    line-height: 1.7;
+}
+
+.links {
+    margin-top: 50px; /* Ample space between profile and links */
+    margin-bottom: 50px; /* Ample space between links and contact form */
+}
+
+.links a {
+    display: flex; /* Use flexbox for icon and text alignment */
+    align-items: center; /* Vertically center icon and text */
+    justify-content: center; /* Horizontally center content */
+    gap: 15px; /* More space between icon and text */
+    margin: 22px auto; /* Ample space between links */
+    padding: 18px 35px; /* Refined padding for a refined button */
+    background-color: var(--accent-primary); /* Solid primary accent (Bordo) */
+    color: var(--text-light); /* White text on accent background */
+    text-decoration: none;
+    border-radius: 12px; /* Smoothly rounded */
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth, bouncier transition */
+    width: 80%;
+    max-width: 380px; /* Links are wide for presence */
+    font-size: 1.1em; /* Refined font size for buttons */
+    font-weight: 600; /* Less bold, more elegant text on buttons */
+    box-shadow: 0 10px 25px var(--shadow-base-color); /* Deep shadow for links */
+    letter-spacing: 0.8px; /* Refined letter spacing */
+    position: relative;
+    overflow: hidden; /* Hide overflow for hover effects */
+    border: 1px solid var(--border-accent); /* Accent border for links */
+}
+
+.links a i {
+    font-size: 1.3em; /* Larger icons */
+    color: var(--text-light); /* Icons are same color as text for unity */
+}
+
+.links a:hover {
+    background-color: var(--accent-secondary); /* Change to darker bordo on hover */
+    transform: translateY(-8px) scale(1.03); /* Refined lift and slight scale */
+    box-shadow: 0 18px 35px var(--shadow-base-color), /* Deeper shadow on hover */
+                0 0 30px var(--glow-color); /* Stronger bordo glow on hover */
+    color: var(--text-light); /* Ensure text stays light */
+    border: 1px solid var(--accent-secondary); /* Accent border color change on hover */
+}
+
+.links a:active {
+    transform: translateY(-4px) scale(1.01); /* Click feedback */
+    box-shadow: 0 8px 15px var(--shadow-base-color);
+}
+
+/* Contact Form Styles */
+.contact-section {
+    margin-top: 60px; /* Ample space above contact form */
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.15); /* Sleek, more visible divider line */
+    padding-top: 40px; /* Ample space after divider */
+}
+
+.contact-section h2 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-light); /* White text */
+    font-size: 2em; /* Refined heading size */
+    margin-bottom: 35px;
+    font-weight: 700;
+    text-shadow: 0 0 15px var(--glow-color); /* Prominent glow for form heading */
+}
+
+#contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Refined space between form elements */
+    max-width: 480px; /* Form is wider for presence */
+    margin: 0 auto;
+}
+
+#contactForm input,
+#contactForm textarea {
+    padding: 16px 22px; /* Refined padding for inputs */
+    border: 1px solid var(--border-accent); /* Accent border for inputs */
+    border-radius: 10px; /* Smoothly rounded inputs */
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05em;
+    color: var(--text-light); /* White text in inputs */
+    background-color: var(--card-bg); /* Dark input background */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#contactForm input::placeholder,
+#contactForm textarea::placeholder {
+    color: var(--text-muted); /* Muted placeholder text */
+    opacity: 0.8;
+}
+
+#contactForm input:focus,
+#contactForm textarea:focus {
+    outline: none;
+    border-color: var(--accent-primary); /* Vibrant border on focus */
+    box-shadow: 0 0 0 5px var(--focus-glow-color); /* Softer bordo glow on focus */
+}
+
+#contactForm button {
+    background-color: var(--accent-primary);
+    color: var(--text-light); /* White text */
+    padding: 16px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.15em;
+    font-weight: 600; /* Bolder button text */
+    cursor: pointer;
+    transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    margin-top: 20px; /* Ample space above button */
+    letter-spacing: 0.8px; /* Refined letter spacing */
+}
+
+#contactForm button:hover {
+    background-color: var(--accent-secondary); /* Change color to darker bordo on hover */
+    transform: translateY(-8px); /* Refined lift */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6),
+                0 0 30px var(--glow-color); /* Stronger bordo glow on hover */
+}
+
+.form-message {
+    margin-top: 25px;
+    padding: 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    border: 1px solid; /* A refined border for messages */
+}
+
+.form-message.success {
+    background-color: var(--success-bg);
+    color: var(--success-text);
+    border-color: var(--success-bg);
+    opacity: 1;
+}
+
+.form-message.error {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    border-color: var(--error-bg);
+    opacity: 1;
+}
+
+.footer {
+    margin-top: auto; /* Pushes footer to the bottom */
+    padding: 30px 0;
+    font-size: 0.85em;
+    color: var(--text-muted);
+    width: 100%;
+    text-align: center;
+    opacity: 0.3; /* More subtle footer */
+    transition: opacity 0.3s ease;
+}
+
+.footer:hover {
+    opacity: 0.6;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) { /* Adjusted breakpoint for larger mobile devices */
+    .container {
+        padding: 45px 30px;
+        margin: 30px auto;
+        border-radius: 18px;
+        max-width: 95%; 
+    }
+
+    .profile-pic {
+        width: 130px; /* Adjusted for mobile */
+        height: 130px;
+        margin-bottom: 25px;
+        border-width: 5px;
+    }
+
+    h1 {
+        font-size: 2.8em; /* Adjusted for mobile */
+        letter-spacing: -0.03em;
+    }
+
+    p {
+        font-size: 1.05em;
+    }
+
+    .links {
+        margin-top: 45px;
+        margin-bottom: 45px;
+    }
+
+    .links a {
+        padding: 15px 25px;
+        width: 90%;
+        max-width: none;
+        font-size: 1.05em;
+        margin: 20px auto;
+        gap: 12px;
+    }
+
+    .links a i {
+        font-size: 1.3em;
+    }
+
+    .contact-section {
+        margin-top: 50px;
+        padding-top: 35px;
+    }
+
+    .contact-section h2 {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+
+    #contactForm {
+        max-width: 90%;
+        gap: 15px;
+    }
+
+    #contactForm input,
+    #contactForm textarea,
+    #contactForm button {
+        padding: 15px 20px;
+        font-size: 0.95em;
+    }
+
+    .form-message {
+        padding: 15px;
+        font-size: 0.9em;
+    }
+
+    .footer {
+        padding: 25px 0;
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) { /* Even smaller mobile devices */
+    .container {
+        padding: 35px 18px;
+        border-radius: 15px;
+    }
+    h1 {
+        font-size: 2.5em;
+    }
+    .profile-pic {
+        width: 110px;
+        height: 110px;
+        border-width: 4px;
+    }
+    .links a {
+        font-size: 1em;
+        padding: 12px 20px;
+        gap: 10px;
+    }
+    .links a i {
+        font-size: 1.1em;
+    }
+    .contact-section h2 {
+        font-size: 1.8em;
+    }
+    #contactForm input,
+    #contactForm textarea,
+    #contactForm button {
+        font-size: 0.9em;
+        padding: 12px 15px;
+    }
+}

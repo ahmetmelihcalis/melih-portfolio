@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ahmet Melih Çalış's personal portfolio and links website. Software Engineering Student and Future Innovator in AI/ML.">
+    <title>Ahmet Melih Çalış - Portfolio & Links</title>
+    
+    <!-- Google Fonts: Poppins (for headings) and Inter (for body text - clean & modern) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons: For social media and other icons -->
+    <!-- IMPORTANT: Always verify the integrity value from Font Awesome's official CDN page for security -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="style.css"> <!-- Your custom styles -->
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/74092591?v=4" type="image/png"> <!-- Your favicon link/path -->
+</head>
+<body>
+    <div class="container">
+        <div class="profile-section">
+            <img src="https://avatars.githubusercontent.com/u/182358572?v=4" alt="Ahmet Melih Çalış Profile" class="profile-pic"> <!-- Your profile picture link/path -->
+            <h1>Ahmet Melih Çalış</h1>
+            <p>Software Engineering Student | Future Innovator</p>
+        </div>
+        
+        <div class="links">
+            <a href="https://www.linkedin.com/in/ahmetmelihcalis" target="_blank" aria-label="LinkedIn Profile">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/ahmetmelihcalis" target="_blank" aria-label="GitHub Profile">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.kaggle.com/ahmetmelihcalis" target="_blank" aria-label="Kaggle Profile">
+                <i class="fab fa-kaggle"></i> Kaggle Profile 
+            </a>
+            <a href="https://huggingface.co/melihcalis" target="_blank" aria-label="Hugging Face Profile">
+                <i class="fas fa-robot"></i> Hugging Face 
+            </a>
+            <a href="https://medium.com/@a.melihcalis" target="_blank" aria-label="Medium Profile">
+                <i class="fab fa-medium"></i> Medium
+            </a>
+            <a href="https://www.instagram.com/a.melihcalis?igsh=MWN5ZjNvY3BkdTJjbQ==" target="_blank" aria-label="Instagram Profile">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <!-- Optional: Add more links if needed -->
+            <!-- <a href="mailto:your.email@example.com" aria-label="Email Me"><i class="fas fa-envelope"></i> Email Me</a> -->
+        </div>
+
+        <div class="contact-section">
+            <h2>Get in Touch</h2>
+            <form id="contactForm"> 
+                <input type="text" id="name" placeholder="Your Name" required aria-label="Your Name">
+                <input type="email" id="email" placeholder="Your Email" required aria-label="Your Email">
+                <textarea id="message" placeholder="Your Message" rows="5" required aria-label="Your Message"></textarea>
+                <button type="submit">Send Message</button>
+                <div id="formMessage" class="form-message" role="alert" aria-live="polite"></div> <!-- Messages here (success/error) -->
+            </form>
+        </div>
+
+    </div>
+    <div class="footer">
+        Created by Ahmet Melih Çalış © 2024
+    </div>
+
+    <script src="script.js"></script> 
+</body>
+</html>

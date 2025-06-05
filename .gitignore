@@ -1,0 +1,11 @@
+# Python related files
+__pycache__/
+*.pyc
+venv/ # Python virtual environment folder
+
+# Node.js related files (for Vercel CLI)
+node_modules/ # npm install downloads these packages
+.vercel/ # Vercel's own configuration files
+
+# Sensitive information
+.env # Our environment variables file
