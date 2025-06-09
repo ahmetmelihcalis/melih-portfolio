@@ -1,432 +1,543 @@
-/* General Settings and Font Imports */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap');
+/* --- YENİ NEON TEMA & FONT AYARLARI --- */
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;700&family=Roboto+Mono:wght@400;500;600&family=Product+Sans:wght@400;700&display=swap');
 
 :root {
-    /* Color Palette - Elegant Deep Grey, Black & Rich Maroon */
-    --bg-dark: #1A1A1A;         /* Deep Dark Grey for the furthest background */
-    --card-bg: #000000;         /* Pure Black for the central card background */
-    --text-light: #F0F0F0;      /* Soft white for primary text */
-    --text-muted: #A0A0A0;      /* Muted grey for secondary text and placeholders */
-    --accent-primary: #B22222;  /* Firebrick - The elegant, slightly brighter "bordo" for primary accents/borders */
-    --accent-secondary: #8B0000; /* Dark Red - Deeper bordo for hover states */
-    --shadow-base-color: rgba(0, 0, 0, 0.8); /* Strong, refined black shadow for depth */
-    --glow-color: rgba(178, 34, 34, 0.6); /* Bordo glow for elements, based on accent-primary */
+  /* Neon & Koyu Tema Renk Paleti */
+  --bg-dark: #0a0c10;              
+  --bg-glass: rgba(20, 25, 40, 0.5); 
+  --bg-glass-light: rgba(20, 25, 40, 0.8);
 
-    /* Specific Border/Glow Colors for Elegance */
-    --border-main-card: var(--accent-primary); /* Main card border will be the accent color */
-    --border-accent: var(--accent-primary); /* Accent color for detailed borders (profile pic, links, inputs) */
-    --focus-glow-color: rgba(178, 34, 34, 0.4); /* Softer bordo glow for input focus */
+  --text-primary: #e0e0e0;         
+  --text-secondary: #a0a0b0;       
+  
+  --neon-blue: #00d4ff;            
+  --neon-blue-dark: #00a2c7;
+  --google-blue: #4285f4;
+  --google-green: #34a853;
+  --google-yellow: #fbbc04;
+  --google-red: #ea4335;
+  
+  --glow-subtle: 0 0 8px rgba(0, 212, 255, 0.3), 0 0 12px rgba(0, 212, 255, 0.2);
+  --glow-medium: 0 0 12px rgba(0, 212, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.3);
+  --glow-strong: 0 0 15px var(--neon-blue), 0 0 25px var(--neon-blue), 0 0 50px rgba(0, 212, 255, 0.5);
 
-    /* Form Messages (Keeping distinct for clear feedback) */
-    --success-bg: #28a745;      /* Success green */
-    --success-text: #FFFFFF;
-    --error-bg: #F44336;        /* Error red */
-    --error-text: #FFFFFF;
+  --border-neon: rgba(0, 212, 255, 0.3);
+  --border-neon-hover: var(--neon-blue);
+
+  --gradient-primary: linear-gradient(135deg, var(--neon-blue) 0%, var(--google-blue) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--google-red) 0%, var(--google-yellow) 100%);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Inter', sans-serif; /* Clean, modern body font */
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: var(--bg-dark); /* Deep dark grey background */
-    color: var(--text-light); /* White text */
-    text-align: center;
-    overflow-x: hidden; /* Prevents horizontal scroll */
-    padding: 20px; /* Add some padding on smaller screens */
-    box-sizing: border-box; /* Include padding in element's total width/height */
-    /* Subtle radial gradient for background depth */
-    background: radial-gradient(circle at center, #252525 0%, #1A1A1A 100%); /* Slightly lighter grey to dark grey */
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+  margin: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  text-align: center;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding-top: 64px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 15% 25%, rgba(0, 212, 255, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(66, 133, 244, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(52, 168, 83, 0.05) 0%, transparent 35%);
+  z-index: -1;
+  animation: backgroundFloat 40s ease-in-out infinite;
+}
+
+@keyframes backgroundFloat {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(20px, -30px); }
+  50% { transform: translate(-20px, 30px); }
+  75% { transform: translate(10px, 15px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* --- BÖLÜM STİLLERİ - DAHA AZ BOŞLUKLU --- */
+/* DEĞİŞİKLİK: Padding azaltıldı ve min-height kaldırıldı. */
+.section {
+  padding: 70px 24px; /* 100px'den 70px'e düşürüldü */
+  /* min-height: 100vh; kaldırıldı. Artık bölüm içeriği kadar yer kaplayacak */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.1); 
+}
+
+/* DEĞİŞİKLİK: About me bölümünü özellikle daha da küçültmek için */
+#about {
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .container {
-    background-color: var(--card-bg); /* Pure black card background for the center */
-    padding: 55px 35px; /* Refined padding for elegance */
-    border-radius: 20px; /* Modern rounded corners */
-    box-shadow: 0 20px 50px var(--shadow-base-color); /* Deep, impactful shadow */
-    margin: 40px auto; /* Centered with ample margin */
-    width: 95%;
-    max-width: 580px; /* Refined width for a strong, elegant presence */
-    animation: fadeInScaleUp 1.2s ease-out forwards; /* Smoother, elegant load animation */
-    backdrop-filter: blur(12px); /* Prominent frosted glass effect */
-    -webkit-backdrop-filter: blur(12px); /* For Safari */
-    border: 2px solid var(--border-main-card); /* Accent colored border for the main card */
-    position: relative; 
-    overflow: hidden; /* Ensure shadows and content stay within bounds */
+  width: 100%;
+  max-width: 720px;
+  padding: 0;
+  text-align: center;
+  z-index: 2;
+  animation: fadeIn 1s ease-out forwards;
 }
 
-/* Keyframe for initial load animation (elegant and impactful) */
-@keyframes fadeInScaleUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.profile-section {
-    margin-bottom: 40px; /* Ample space below profile */
+/* --- NAVBAR - ORTALANMIŞ MENÜ --- */
+/* DEĞİŞİKLİK: Navbar'ı ortalamak için flex yerine grid kullanıldı. */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(10, 12, 16, 0.7);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: grid; /* Flex'ten grid'e geçildi */
+  grid-template-columns: 1fr auto 1fr; /* Sol-Orta-Sağ sütun yapısı */
+  align-items: center;
+  padding: 0 24px;
+  height: 64px;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+  transition: all 0.3s ease;
 }
 
+/* DEĞİŞİKLİK: Markayı sol sütuna yerleştir */
+.navbar-brand {
+    grid-column: 1 / 2;
+    justify-self: start;
+}
+
+.navbar-brand a {
+  font-family: 'Product Sans', sans-serif;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  text-decoration: none;
+  text-shadow: 0 0 8px var(--neon-blue);
+  transition: all 0.2s ease;
+}
+
+.navbar-brand a:hover {
+  text-shadow: 0 0 12px var(--neon-blue), 0 0 5px var(--neon-blue);
+}
+
+/* DEĞİŞİKLİK: Navigasyon linklerini orta sütuna yerleştir */
+.navbar-nav {
+    grid-column: 2 / 3;
+    justify-self: center;
+    display: flex; /* İç elemanların yan yana olması için */
+    gap: 4px;
+}
+
+.nav-link {
+  font-family: 'Google Sans', sans-serif;
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: #fff;
+  background: rgba(0, 212, 255, 0.1);
+  text-shadow: 0 0 5px rgba(0, 212, 255, 0.7);
+}
+
+.nav-cv-button {
+  background: transparent;
+  color: var(--neon-blue);
+  border: 1px solid var(--neon-blue);
+  box-shadow: var(--glow-subtle);
+}
+
+.nav-cv-button:hover {
+  background: var(--neon-blue);
+  color: var(--bg-dark) !important;
+  box-shadow: var(--glow-medium);
+  text-shadow: none !important;
+}
+
+/* Kalan CSS kodları aynı kalabilir... */
+
+/* --- HERO BÖLÜMÜ - GÖZ ALICI GİRİŞ --- */
 .profile-pic {
-    width: 150px; /* Refined avatar size for elegance */
-    height: 150px;
-    border-radius: 50%; /* Perfect circle */
-    object-fit: cover; /* Ensures image covers the area */
-    border: 6px solid var(--border-accent); /* Accent color border */
-    box-shadow: 0 0 20px var(--glow-color), /* Initial bordo glow */
-                0 10px 30px var(--shadow-base-color); /* Deep shadow */
-    margin-bottom: 25px; /* Space before heading */
-    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Smoother, bouncier transition */
-                box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                border-color 0.5s ease-out;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 24px;
+  border: 3px solid var(--bg-dark);
+  box-shadow: 0 0 0 4px var(--neon-blue), var(--glow-strong);
+  animation: pulse 3s infinite ease-in-out;
 }
 
-.profile-pic:hover {
-    transform: scale(1.1) rotate(5deg); /* Refined, noticeable effect */
-    border-color: var(--accent-secondary); /* Darker bordo on hover */
-    box-shadow: 0 0 35px rgba(178, 34, 34, 0.8), /* Stronger bordo glow */
-                0 15px 40px var(--shadow-base-color); /* Even deeper shadow */
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 4px var(--neon-blue), var(--glow-medium); }
+  50% { box-shadow: 0 0 0 6px var(--neon-blue), var(--glow-strong); }
 }
 
 h1 {
-    font-family: 'Poppins', sans-serif; /* Bold and strong heading font */
-    color: var(--text-light); /* White text */
-    margin-bottom: 12px;
-    font-size: 3.2em; /* Refined, impactful heading */
-    font-weight: 700;
-    letter-spacing: -0.04em; /* Tighter letter spacing for a powerful look */
-    text-shadow: 0 0 15px var(--glow-color), 0 0 25px var(--glow-color); /* Prominent, layered text glow */
+  font-family: 'Product Sans', sans-serif;
+  color: #fff;
+  margin-bottom: 8px;
+  font-size: 48px;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.8), 0 0 30px rgba(0, 212, 255, 0.5);
 }
 
-p {
-    color: var(--text-muted); /* Muted grey text for description */
-    margin-bottom: 0;
-    font-size: 1.15em; /* Refined body text for readability */
-    line-height: 1.7;
+.tagline {
+  font-size: 18px;
+  color: var(--text-primary);
+  margin-top: 16px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .links {
-    margin-top: 50px; /* Ample space between profile and links */
-    margin-bottom: 50px; /* Ample space between links and contact form */
+  margin-top: 40px;
+  display: grid;
+  gap: 16px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .links a {
-    display: flex; /* Use flexbox for icon and text alignment */
-    align-items: center; /* Vertically center icon and text */
-    justify-content: center; /* Horizontally center content */
-    gap: 15px; /* More space between icon and text */
-    margin: 22px auto; /* Ample space between links */
-    padding: 18px 35px; /* Refined padding for a refined button */
-    background-color: var(--accent-primary); /* Solid primary accent (Bordo) */
-    color: var(--text-light); /* White text on accent background */
-    text-decoration: none;
-    border-radius: 12px; /* Smoothly rounded */
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth, bouncier transition */
-    width: 80%;
-    max-width: 380px; /* Links are wide for presence */
-    font-size: 1.1em; /* Refined font size for buttons */
-    font-weight: 600; /* Less bold, more elegant text on buttons */
-    box-shadow: 0 10px 25px var(--shadow-base-color); /* Deep shadow for links */
-    letter-spacing: 0.8px; /* Refined letter spacing */
-    position: relative;
-    overflow: hidden; /* Hide overflow for hover effects */
-    border: 1px solid var(--border-accent); /* Accent border for links */
-}
-
-.links a i {
-    font-size: 1.3em; /* Larger icons */
-    color: var(--text-light); /* Icons are same color as text for unity */
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  text-decoration: none;
+  border-radius: 12px;
+  border: 1px solid var(--border-neon);
+  backdrop-filter: blur(10px);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .links a:hover {
-    background-color: var(--accent-secondary); /* Change to darker bordo on hover */
-    transform: translateY(-8px) scale(1.03); /* Refined lift and slight scale */
-    box-shadow: 0 18px 35px var(--shadow-base-color), /* Deeper shadow on hover */
-                0 0 30px var(--glow-color); /* Stronger bordo glow on hover */
-    color: var(--text-light); /* Ensure text stays light */
-    border: 1px solid var(--accent-secondary); /* Accent border color change on hover */
+  transform: translateY(-3px) scale(1.02);
+  background: rgba(0, 212, 255, 0.1);
+  border-color: var(--border-neon-hover);
+  color: #fff;
+  box-shadow: var(--glow-medium);
 }
 
-.links a:active {
-    transform: translateY(-4px) scale(1.01); /* Click feedback */
-    box-shadow: 0 8px 15px var(--shadow-base-color);
+.links a i {
+  font-size: 20px;
+  color: var(--neon-blue);
+  transition: all 0.3s ease;
 }
 
-/* Contact Form Styles */
-.contact-section {
-    margin-top: 60px; /* Ample space above contact form */
-    text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.15); /* Sleek, more visible divider line */
-    padding-top: 40px; /* Ample space after divider */
+.links a:hover i {
+  transform: scale(1.1);
+  text-shadow: 0 0 8px var(--neon-blue);
 }
 
-.contact-section h2 {
-    font-family: 'Poppins', sans-serif;
-    color: var(--text-light); /* White text */
-    font-size: 2em; /* Refined heading size */
-    margin-bottom: 35px;
-    font-weight: 700;
-    text-shadow: 0 0 15px var(--glow-color); /* Prominent glow for form heading */
+.hero-buttons {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.btn {
+  font-family: 'Google Sans', sans-serif;
+  padding: 12px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: var(--neon-blue);
+  color: var(--bg-dark);
+  box-shadow: var(--glow-medium);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-strong);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--neon-blue);
+  border: 1px solid var(--neon-blue);
+}
+
+.btn-secondary:hover {
+  background: var(--neon-blue);
+  color: var(--bg-dark);
+  box-shadow: var(--glow-medium);
+  transform: translateY(-2px);
+}
+
+.section h2 {
+  font-family: 'Product Sans', sans-serif;
+  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 48px;
+  position: relative;
+  padding-bottom: 16px;
+  text-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+}
+
+.section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--gradient-primary);
+  border-radius: 3px;
+  box-shadow: var(--glow-subtle);
+}
+
+.skills-grid, .project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1100px;
+  text-align: left;
+}
+
+.skill-category, .project-card {
+  background: var(--bg-glass);
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid var(--border-neon);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.skill-category:hover, .project-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--border-neon-hover);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), var(--glow-medium);
+}
+
+.skill-category h3, .project-card h3 {
+  font-family: 'Google Sans', sans-serif;
+  color: var(--neon-blue);
+  font-size: 18px;
+  margin-bottom: 16px;
+  font-weight: 500;
+  text-shadow: 0 0 4px rgba(0, 212, 255, 0.5);
+}
+
+.skill-category ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skill-category li {
+  color: var(--text-primary);
+  font-size: 14px;
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.skill-category li:last-child {
+  border-bottom: none;
+}
+
+.skill-category li i {
+  color: var(--google-green);
+  font-size: 16px;
+}
+
+.project-card p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--neon-blue);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.project-link:hover {
+  color: #fff;
+  text-shadow: 0 0 5px var(--neon-blue);
+}
+
+.project-link i {
+  transition: transform 0.3s ease;
+}
+
+.project-link:hover i {
+  transform: translateX(4px);
 }
 
 #contactForm {
-    display: flex;
-    flex-direction: column;
-    gap: 18px; /* Refined space between form elements */
-    max-width: 480px; /* Form is wider for presence */
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+  background: var(--bg-glass);
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid var(--border-neon);
 }
 
 #contactForm input,
 #contactForm textarea {
-    padding: 16px 22px; /* Refined padding for inputs */
-    border: 1px solid var(--border-accent); /* Accent border for inputs */
-    border-radius: 10px; /* Smoothly rounded inputs */
-    font-family: 'Inter', sans-serif;
-    font-size: 1.05em;
-    color: var(--text-light); /* White text in inputs */
-    background-color: var(--card-bg); /* Dark input background */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-#contactForm input::placeholder,
-#contactForm textarea::placeholder {
-    color: var(--text-muted); /* Muted placeholder text */
-    opacity: 0.8;
+  padding: 14px 18px;
+  border: 1px solid var(--border-neon);
+  border-radius: 8px;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: rgba(10, 12, 16, 0.5);
+  transition: all 0.2s ease;
 }
 
 #contactForm input:focus,
 #contactForm textarea:focus {
-    outline: none;
-    border-color: var(--accent-primary); /* Vibrant border on focus */
-    box-shadow: 0 0 0 5px var(--focus-glow-color); /* Softer bordo glow on focus */
+  outline: none;
+  border-color: var(--neon-blue);
+  box-shadow: var(--glow-medium);
 }
 
 #contactForm button {
-    background-color: var(--accent-primary);
-    color: var(--text-light); /* White text */
-    padding: 16px 30px;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.15em;
-    font-weight: 600; /* Bolder button text */
-    cursor: pointer;
-    transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    margin-top: 20px; /* Ample space above button */
-    letter-spacing: 0.8px; /* Refined letter spacing */
+  background: var(--neon-blue);
+  color: var(--bg-dark);
+  padding: 14px 24px;
+  border: none;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--glow-medium);
+  margin-top: 8px;
 }
 
 #contactForm button:hover {
-    background-color: var(--accent-secondary); /* Change color to darker bordo on hover */
-    transform: translateY(-8px); /* Refined lift */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6),
-                0 0 30px var(--glow-color); /* Stronger bordo glow on hover */
-}
-
-.form-message {
-    margin-top: 25px;
-    padding: 16px;
-    border-radius: 8px;
-    font-weight: 600;
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-    border: 1px solid; /* A refined border for messages */
-}
-
-.form-message.success {
-    background-color: var(--success-bg);
-    color: var(--success-text);
-    border-color: var(--success-bg);
-    opacity: 1;
-}
-
-.form-message.error {
-    background-color: var(--error-bg);
-    color: var(--error-text);
-    border-color: var(--error-bg);
-    opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: var(--glow-strong);
 }
 
 .footer {
-    margin-top: auto; /* Pushes footer to the bottom */
-    padding: 30px 0;
-    font-size: 0.85em;
-    color: var(--text-muted);
-    width: 100%;
-    text-align: center;
-    opacity: 0.3; /* More subtle footer */
-    transition: opacity 0.3s ease;
+  margin-top: auto;
+  padding: 32px 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: var(--bg-dark);
+  border-top: 1px solid rgba(0, 212, 255, 0.1);
 }
 
-.footer:hover {
-    opacity: 0.6;
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--neon-blue); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #fff; }
+
+::selection {
+  background: rgba(0, 212, 255, 0.3);
+  color: #fff;
 }
 
-/* --- MOBILE RESPONSIVENESS (BREAKPOINTS) --- */
-
-/* For devices up to 768px wide (e.g., larger phones in landscape, small tablets) */
-@media (max-width: 768px) {
-    .container {
-        padding: 40px 25px; /* Reduced padding for smaller screens */
-        margin: 25px auto;
-        border-radius: 18px;
-        max-width: 95%; /* Allow container to take more width */
+/* --- MOBİL UYUMLULUK --- */
+@media (max-width: 992px) {
+    /* DEĞİŞİKLİK: Mobilde grid'i devre dışı bırakıp eski flex yapısına dön */
+    #navbar {
+        display: flex;
+        justify-content: space-between;
+    }
+    .navbar-nav {
+      /* Grid stillerini sıfırla */
+      grid-column: auto;
+      justify-self: auto;
+      /* Hamburger menü için gerekli stiller */
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      position: absolute;
+      top: 56px;
+      left: 0;
+      background: var(--bg-glass-light);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border-top: 1px solid var(--border-neon);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    /* Aktif menü için gereken stiller (Eskisiyle aynı) */
+    .navbar-nav.active {
+        display: flex;
+        max-height: 400px;
+    }
+    .nav-link {
+        padding: 16px 20px;
+        margin: 0;
+        text-align: center;
+        width: 100%;
+        border-bottom: 1px solid var(--border-neon);
+        border-radius: 0;
     }
 
-    .profile-pic {
-        width: 120px; /* Smaller profile picture */
-        height: 120px;
-        margin-bottom: 20px;
-        border-width: 4px; /* Thinner border */
-    }
-
-    h1 {
-        font-size: 2.5em; /* Smaller heading size */
-        letter-spacing: -0.02em; /* Slightly less tight */
-    }
-
-    p {
-        font-size: 1em; /* Smaller body text */
-        line-height: 1.6;
-    }
-
-    .links {
-        margin-top: 40px;
-        margin-bottom: 40px;
-    }
-
-    .links a {
-        padding: 14px 20px; /* Reduced button padding */
-        width: 90%; /* Wider buttons on mobile */
-        max-width: none; /* No max-width constraint */
-        font-size: 1em; /* Smaller button text */
-        margin: 18px auto; /* Reduced margin between links */
-        gap: 10px; /* Reduced gap between icon and text */
-        box-shadow: 0 6px 15px var(--shadow-base-color); /* Softer shadow */
-    }
-
-    .links a i {
-        font-size: 1.2em; /* Smaller icons */
-    }
-
-    .links a:hover {
-        transform: translateY(-6px) scale(1.02); /* Less dramatic lift */
-        box-shadow: 0 10px 20px var(--shadow-base-color), 0 0 20px var(--glow-color); /* Softer glow */
-    }
-
-    .contact-section {
-        margin-top: 50px;
-        padding-top: 35px;
-    }
-
-    .contact-section h2 {
-        font-size: 1.8em; /* Smaller contact heading */
-        margin-bottom: 30px;
-    }
-
-    #contactForm {
-        max-width: 90%; /* Wider form */
-        gap: 15px; /* Reduced gap */
-    }
-
-    #contactForm input,
-    #contactForm textarea,
-    #contactForm button {
-        padding: 14px 18px; /* Reduced input padding */
-        font-size: 0.95em; /* Smaller input font */
-        border-width: 1px; /* Thinner borders */
-    }
-
-    #contactForm button {
-        transform: translateY(0); /* Ensure no initial transform */
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-    }
-    #contactForm button:hover {
-        transform: translateY(-6px); /* Less dramatic lift */
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), 0 0 20px var(--glow-color); /* Softer glow */
-    }
-
-    .form-message {
-        padding: 14px;
-        font-size: 0.85em;
-    }
-
-    .footer {
-        padding: 25px 0;
-        font-size: 0.75em;
-    }
+    body { padding-top: 56px; }
+    .section { padding: 50px 16px; }
+    h1 { font-size: 36px; }
+    .section h2 { font-size: 28px; }
+    .tagline { font-size: 16px; }
+    .profile-pic { width: 120px; height: 120px; }
+    .hero-buttons { flex-direction: column; }
 }
 
-/* For devices up to 480px wide (e.g., most smartphones in portrait) */
 @media (max-width: 480px) {
-    body {
-        padding: 10px; /* Even less padding on very small screens */
-    }
-    .container {
-        padding: 35px 15px; /* Even smaller padding inside container */
-        border-radius: 15px;
-        margin: 20px auto;
-        box-shadow: 0 15px 30px var(--shadow-base-color); /* Adjusted shadow depth */
-    }
-    h1 {
-        font-size: 2.2em; /* Smallest heading size */
-        letter-spacing: -0.01em;
-    }
-    p {
-        font-size: 0.9em; /* Smallest body text size */
-    }
-    .profile-pic {
-        width: 100px; /* Smallest profile picture */
-        height: 100px;
-        border-width: 3px; /* Thinnest border */
-        margin-bottom: 15px;
-    }
-    .links {
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
-    .links a {
-        padding: 12px 15px; /* Very small button padding */
-        font-size: 0.9em; /* Smallest button text */
-        margin: 15px auto;
-        gap: 8px; /* Smallest gap */
-    }
-    .links a i {
-        font-size: 1.1em; /* Smallest icons */
-    }
-    .contact-section {
-        margin-top: 40px;
-        padding-top: 25px;
-    }
-    .contact-section h2 {
-        font-size: 1.6em; /* Smallest contact heading */
-        margin-bottom: 25px;
-    }
-    #contactForm {
-        gap: 12px; /* Smallest form gap */
-        max-width: 95%;
-    }
-    #contactForm input,
-    #contactForm textarea,
-    #contactForm button {
-        padding: 12px 15px; /* Smallest input padding */
-        font-size: 0.85em; /* Smallest input font */
-        border-radius: 8px;
-    }
-    .form-message {
-        padding: 12px;
-        font-size: 0.8em;
-    }
-    .footer {
-        padding: 20px 0;
-        font-size: 0.7em;
-    }
+    h1 { font-size: 32px; }
+    .section h2 { font-size: 24px; }
+    .profile-pic { width: 100px; height: 100px; }
+    .links a, #contactForm input, #contactForm textarea { padding: 14px; }
+    #contactForm { padding: 24px; }
 }

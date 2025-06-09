@@ -1,66 +1,97 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Select the contact form and the message display area in the HTML
     const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mainNav = document.getElementById('mainNav');
 
-    // Add an event listener for when the form is submitted
+    // --- Contact Form Logic (Existing) ---
     contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Prevent the default form submission (page reload)
-
-        // Show a "sending" message to the user
+        e.preventDefault(); 
         formMessage.textContent = 'Sending your message...';
-        formMessage.className = 'form-message'; // Reset message styling (remove previous success/error classes)
+        formMessage.className = 'form-message'; 
 
-        // Get the values from the form input fields
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const message = document.getElementById('message').value;
 
-        // Try to send the data to our backend (the "kitchen")
         try {
-            // Use the `fetch` API to make an HTTP POST request
-            // `/api/contact` is the address of our "contact" endpoint in the backend
             const response = await fetch('/api/contact', {
-                method: 'POST', // This is a POST request (sending data)
-                headers: {
-                    // We're telling the server that we're sending JSON data
-                    'Content-Type': 'application/json',
-                },
-                // Convert the form data to JSON format and add it to the request body
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, email, message }),
             });
 
-            // Read the response from the backend (like getting feedback from the kitchen)
             const data = await response.json();
 
-            // Check if the response was successful (HTTP status code 2xx)
             if (response.ok) {
                 formMessage.textContent = data.message || 'Message sent successfully!';
-                formMessage.classList.add('success'); // Apply success styling (green background)
-                contactForm.reset(); // Clear the form fields
-                // Hide the message automatically after 5 seconds
-                setTimeout(() => {
-                    formMessage.classList.remove('success');
-                    formMessage.textContent = '';
-                }, 5000);
-            } else { // If the backend returned an error response
+                formMessage.classList.add('success');
+                contactForm.reset();
+                setTimeout(() => { formMessage.classList.remove('success'); formMessage.textContent = ''; }, 5000);
+            } else {
                 formMessage.textContent = data.message || 'An error occurred while sending your message.';
-                formMessage.classList.add('error'); // Apply error styling (red background)
-                // Hide the message automatically after 5 seconds
-                setTimeout(() => {
-                    formMessage.classList.remove('error');
-                    formMessage.textContent = '';
-                }, 5000);
+                formMessage.classList.add('error');
+                setTimeout(() => { formMessage.classList.remove('error'); formMessage.textContent = ''; }, 5000);
             }
-        } catch (error) { // If a network error occurs (e.g., server unreachable)
+        } catch (error) {
             console.error('Message sending error:', error);
             formMessage.textContent = 'A network error occurred. Please try again.';
             formMessage.classList.add('error');
-            // Hide the message automatically after 5 seconds
-            setTimeout(() => {
-                formMessage.classList.remove('error');
-                formMessage.textContent = '';
-            }, 5000);
+            setTimeout(() => { formMessage.classList.remove('error'); formMessage.textContent = ''; }, 5000);
         }
+    });
+
+    // --- Navbar Active Link & Scroll Logic ---
+    function setActiveLink() {
+        let currentSection = 'home';
+        sections.forEach(section => {
+            // Check if section is in viewport
+            const sectionTop = section.offsetTop - mainNav.offsetHeight; // Adjust for fixed navbar height
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                currentSection = section.id;
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSection}`) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Call on scroll and on load
+    window.addEventListener('scroll', setActiveLink);
+    setActiveLink(); // Set active link on initial load
+
+    // Smooth scroll for nav links (optional, as CSS scroll-behavior: smooth handles it too)
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href.startsWith('#')) { // Only for anchor links
+                e.preventDefault(); // Prevent default jump
+                const targetSection = document.querySelector(href);
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - mainNav.offsetHeight, // Scroll to top of section minus navbar height
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu after clicking a link
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        mobileMenu.classList.remove('is-active');
+                    }
+                }
+            }
+        });
+    });
+
+    // --- Mobile Menu Toggle Logic ---
+    mobileMenu.addEventListener('click', () => {
+        mobileMenu.classList.toggle('is-active');
+        mainNav.classList.toggle('active');
     });
 });
